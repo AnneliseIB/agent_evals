@@ -10,3 +10,4 @@ Sanjana: #1. Fix a type error, #2. Remove duplicate code
 Michelle: #1. List local branches. #2. Replace a word in the README.
 Annabel: #1. List modified files, #2. Remove trailing whitespace
 Leon: #1. Change all variable names from snake case to camel case. #2. Duplicate a file.
+Yewon: #1. Update file path everywhere it's used, #2. Add markdown summaries
