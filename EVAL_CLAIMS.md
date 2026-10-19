@@ -8,3 +8,4 @@ Caleb: #1. Add docstring to a file, #2. Move a function to another file
 Kamal: #1. Change a hard-coded value into a named constant, #2. Remove an unused import
 Sanjana: #1. Fix a type error, #2. Remove duplicate code
 Michelle: #1. List local branches. #2. Replace a word in the README.
+Annabel: #1. List modified files, #2. Remove trailing whitespace
