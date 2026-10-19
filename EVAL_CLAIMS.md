@@ -3,3 +3,4 @@ Lucas: #1. Create a branch, add simple (subtract?) function, merge branch back t
 Charlotte: #1. Add input validation, #2. Add calculation history?
 Jayden: #1. Fix a simple logic error in a method, #2. Rename a variable in all places
 Caleb: #1. Add docstring to a file, #2. Move a function to another file
+Michelle: #1. List local branches. #2. Replace a word in the README.
