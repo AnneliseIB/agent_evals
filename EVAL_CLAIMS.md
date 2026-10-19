@@ -13,3 +13,4 @@ Leon: #1. Change all variable names from snake case to camel case. #2. Duplicate
 Yewon: #1. Update file path everywhere it's used, #2. Add markdown summaries
 Luke: #1. Fix indentation errors #2. Remove unused imports
 Zhi: #1 What is Today's date, #2 Create 5 branches and deleting 3
+Katie: #1 If working tree on main/prod, create new branch, #2 Add docstrings to all methods in a file
