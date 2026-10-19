@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+
+# Local credentials and evaluation output
+.env
+.env.*
+!.env.example
+jobs/
+.harbor/
+.DS_Store
