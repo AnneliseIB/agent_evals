@@ -29,3 +29,6 @@ jobs:
 
       - name: Run code checks
         run: make check
+
+      - name: Run project tests
+        run: uv run --locked python -m pytest

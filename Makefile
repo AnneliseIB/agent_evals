@@ -1,4 +1,4 @@
-.PHONY: setup check smoke oracle baseline
+.PHONY: setup check clean smoke oracle baseline
 
 setup:
 	uv sync --locked
@@ -6,6 +6,13 @@ setup:
 check:
 	uv run --locked ruff check .
 	uv run --locked ruff format --check .
+
+clean:
+	rm -rf jobs .harbor htmlcov build dist
+	rm -f .coverage .coverage.*
+	find . -type d \( -name .git -o -name .venv \) -prune -o \
+		-type d \( -name __pycache__ -o -name .pytest_cache -o -name .ruff_cache -o -name '*.egg-info' \) \
+		-prune -exec rm -rf {} +
 
 # Makes one billable OpenAI API request.
 smoke:
