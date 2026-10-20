@@ -1,5 +1,7 @@
 .PHONY: setup check smoke oracle baseline
 
+TASK ?= hello-python
+
 setup:
 	uv sync --locked
 
@@ -13,8 +15,8 @@ smoke:
 
 # Verifies the task's reference solution without making model calls.
 oracle:
-	uv run --locked harbor run --path tasks/hello-python --agent oracle --env docker
+	uv run --locked harbor run --path tasks/$(TASK) --agent oracle --env docker
 
 # The unmodified task should earn a reward of 0.
 baseline:
-	uv run --locked harbor run --path tasks/hello-python --agent nop --env docker
+	uv run --locked harbor run --path tasks/$(TASK) --agent nop --env docker
