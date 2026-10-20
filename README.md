@@ -89,7 +89,13 @@ its explicit `--model` option.
 
 ## Tasks and results
 
-`tasks/hello-python/` is a tiny coding task: fix a broken `add()` function. Each
+`tasks/hello-python/` is a tiny coding task: fix a broken `add()` function.
+`tasks/snake-to-camel/` asks the agent to rename variables in a small module from
+snake_case to camelCase without changing its behavior. `tasks/duplicate-file/`
+asks the agent to copy a file in place, naming the copy with the next unused version
+number (for example, `greet3.py`). `make oracle` and
+`make baseline` run `hello-python` by default; select another task with
+`make oracle TASK=snake-to-camel`. Each
 task has instructions, `task.toml`, an environment image, a reference solution,
 and a verifier that writes `/logs/verifier/reward.txt`. See
 [Harbor's task tutorial](https://docs.harborframework.com/tutorials/create-a-task).
