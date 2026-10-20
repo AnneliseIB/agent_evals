@@ -24,7 +24,10 @@ class CodingAgent(BaseAgent):
         environment: BaseEnvironment,
         context: AgentContext,
     ) -> None:
-        # Build the model/tool loop here using openai.AsyncOpenAI().
+        # Build the model/tool loop here using UNCOpenAISettings.from_env(
+        #     model=self.model_name
+        # ) and settings.create_async_client() from coding_agent.provider.
+        # Send Responses requests with store=False and background=False.
         # Send shell tool calls to await environment.exec(command=...).
-        # self.model_name is the model supplied through Harbor's --model option.
-        raise NotImplementedError("Implement the OpenAI model/tool loop in CodingAgent.run().")
+        # Settings maps Harbor's openai/ prefix to the UNC deployment name.
+        raise NotImplementedError("Implement the UNC Azure model/tool loop in CodingAgent.run().")
