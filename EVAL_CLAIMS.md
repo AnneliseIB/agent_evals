@@ -79,3 +79,8 @@
 
 1. If working tree on main/prod, create new branch
 2. Add docstrings to all methods in a file
+
+## Sophia
+
+1. Move a file to a new directory
+2. Create and switch to a new branch
