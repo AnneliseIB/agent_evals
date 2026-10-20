@@ -27,6 +27,10 @@ make check
 make oracle
 ```
 
+GitHub Actions runs `make check` and the project pytest tests on pull requests
+and pushes to `main`, using the Python version in `.python-version` and
+dependencies from `uv.lock`.
+
 The oracle should earn reward **1**. `make baseline` runs a no-op agent and should
 earn reward **0**, confirming the verifier catches the starter bug. The first run
 downloads the Python Docker image and installs pinned pytest dependencies into
@@ -50,7 +54,7 @@ functions with plain assertions, fixtures for shared setup, and
 [assertions](https://docs.pytest.org/en/stable/how-to/assert.html) and
 [parametrization](https://docs.pytest.org/en/stable/how-to/parametrize.html).
 
-Run project tests with `uv run --locked python -m pytest` once they are added.
+Run project tests with `uv run --locked python -m pytest`.
 Task verifiers run inside Harbor through `make oracle` and `make baseline`;
 the host pytest configuration excludes `tasks/` and `jobs/`. The sample task
 installs pytest in its Docker image and runs `python -m pytest` from its verifier
@@ -101,6 +105,10 @@ uv run --locked harbor task init local/my-task --tasks-dir tasks --no-package
 uv run harbor view jobs
 ```
 
-Harbor writes results and logs under `jobs/`. Python dependencies are recorded in
-`uv.lock`. To deliberately update them, run `uv lock --upgrade` followed by
+Harbor writes results and logs under `jobs/`. Run `make clean` to delete generated
+jobs, Harbor state, Python/pytest/Ruff caches, coverage reports, and build outputs.
+It preserves `.env`, `.venv`, Git data, source files, and the dependency lockfile.
+
+Python dependencies are recorded in `uv.lock`. To deliberately update them, run
+`uv lock --upgrade` followed by
 `uv sync --locked` and recheck the smoke task.
