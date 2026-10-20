@@ -27,6 +27,9 @@ make check
 make oracle
 ```
 
+GitHub Actions runs `make check` on pull requests and pushes to `main`, using
+the Python version in `.python-version` and dependencies from `uv.lock`.
+
 The oracle should earn reward **1**. `make baseline` runs a no-op agent and should
 earn reward **0**, confirming the verifier catches the starter bug. The first run
 downloads the Python Docker image and installs pinned pytest dependencies into
