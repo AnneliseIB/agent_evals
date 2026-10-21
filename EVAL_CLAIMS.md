@@ -88,5 +88,5 @@
 
 ## Annelise
 
-1. Add an optional parameter with a defualt value
+1. Run tests and report results without making changes
 2. Delete a file
