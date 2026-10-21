@@ -23,7 +23,7 @@ class LocalAgentOptions(InstalledAgentOptions):
     """Adapter settings, supplied through Harbor's --ak options."""
 
     agent: str = Field(
-        default="krisj_coding", min_length=1, description="Registered agents590 agent"
+        default="krisj_starter", min_length=1, description="Registered agents590 agent"
     )
     package_path: Path = Field(default=Path("../590_agents"), description="Local package root")
     env_file: Path | None = Field(default=None, description="Host-only agent environment file")

@@ -46,7 +46,7 @@ def test_make_targets_resolve_all_tasks_or_the_selected_subset(
         expected = {path.parent.name for path in (ROOT / "tasks").glob("*/task.toml")}
     assert _task_names(config) == expected
     if target == "agent":
-        assert config.agents[0].kwargs["agent"] == "krisj_coding"
+        assert config.agents[0].kwargs["agent"] == "krisj_starter"
 
 
 def test_dataset_discovers_tasks_added_after_config_creation(

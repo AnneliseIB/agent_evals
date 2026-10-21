@@ -46,6 +46,9 @@ all tasks. See [Harbor job configuration](https://docs.harborframework.com/jobs/
 
 ## Evaluate a sibling agent
 
+Start with [Running your agent against evals](docs/running-agents.md) for single-task
+and full-suite commands, then inspect results and logs in Harbor's UI.
+
 The sibling project registers implementations under the shared `agents590` CLI.
 Check it out alongside this repository, or set `AGENTS_PROJECT` to its local path.
 Inspect them with `uv run --project ../590_agents agents590 --list`.
@@ -62,7 +65,7 @@ make agent AGENT=krisj_echo AGENTS_PROJECT=../590_agents
 ```
 
 The `krisj_echo` agent returns the task instruction and intentionally leaves the starter
-unchanged; expect reward **0** with no agent exception. The sibling `krisj_coding`
+unchanged; expect reward **0** with no agent exception. The sibling `krisj_starter`
 implementation remains the course scaffold and fails explicitly until its loop
 is implemented. Actual model-backed agents can make billable requests.
 
@@ -92,7 +95,7 @@ uv run --locked harbor run --path tasks \
 
 | Option | Default | Purpose |
 | --- | --- | --- |
-| `agent` | `krisj_coding` | Registered sibling CLI agent name |
+| `agent` | `krisj_starter` | Registered sibling CLI agent name |
 | `package_path` | `../590_agents` | Local package root containing `pyproject.toml`, `uv.lock`, and `src/` |
 | `env_file` | unset | Explicit host environment file for the agent process |
 
@@ -109,7 +112,7 @@ Agent stdout/stderr are saved in the trial's `agent/` logs directory.
 ```sh
 uv run --locked harbor run --path tasks \
   --agent eval_adapters.local:LocalCliAgent \
-  --ak agent=krisj_coding --ak package_path=../590_agents \
+  --ak agent=krisj_starter --ak package_path=../590_agents \
   --model openai/YOUR_FIRST_DEPLOYMENT --model openai/YOUR_SECOND_DEPLOYMENT \
   --print-config
 ```

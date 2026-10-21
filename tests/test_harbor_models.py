@@ -66,7 +66,7 @@ def test_comparison_yaml_reaches_the_generic_adapter(tmp_path: Path) -> None:
         "openai/gpt-5.6-luna",
         "openai/gpt-5.6-terra",
     ]
-    assert all(agent.options.agent == "krisj_coding" for agent in agents)
+    assert all(agent.options.agent == "krisj_starter" for agent in agents)
 
 
 def test_cli_agent_and_model_replace_yaml_agents(tmp_path: Path) -> None:

@@ -1,7 +1,7 @@
 .PHONY: setup check test clean agent oracle baseline
 
 AGENTS_PROJECT ?= ../590_agents
-AGENT ?= krisj_coding
+AGENT ?= krisj_starter
 TASKS ?=
 MODEL ?=
 ENV_FILE ?=
