@@ -1,24 +1,22 @@
-"""An explicit, small Responses API call to check local OpenAI configuration."""
+"""An explicit, small Responses API call to check UNC Azure configuration."""
 
-import os
-
-from openai import OpenAI
+from coding_agent.provider import UNCOpenAISettings
 
 
 def main() -> None:
     """Run with: uv run --env-file .env openai-smoke."""
-    if not os.environ.get("OPENAI_API_KEY", "").strip():
-        raise SystemExit("Set OPENAI_API_KEY in .env before running the API smoke check.")
-    model = os.environ.get("OPENAI_MODEL", "").strip()
-    if not model:
-        raise SystemExit("Set OPENAI_MODEL in .env to an API model ID available to your project.")
+    try:
+        settings = UNCOpenAISettings.from_env()
+    except ValueError as error:
+        raise SystemExit(str(error)) from None
 
-    with OpenAI(timeout=30.0, max_retries=0) as client:
+    with settings.create_client() as client:
         response = client.responses.create(
-            model=model,
-            input="Reply with exactly: OpenAI connection OK",
+            model=settings.model,
+            input="Reply with exactly: UNC Azure connection OK",
             max_output_tokens=256,
             store=False,
+            background=False,
         )
     print(response.output_text)
 

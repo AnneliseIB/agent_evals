@@ -14,7 +14,7 @@ clean:
 		-type d \( -name __pycache__ -o -name .pytest_cache -o -name .ruff_cache -o -name '*.egg-info' \) \
 		-prune -exec rm -rf {} +
 
-# Makes one billable OpenAI API request.
+# Makes one billable UNC Azure Responses API request.
 smoke:
 	uv run --locked --env-file .env openai-smoke
 
