@@ -4,6 +4,8 @@ from harbor.agents.base import BaseAgent
 from harbor.environments.base import BaseEnvironment
 from harbor.models.agent.context import AgentContext
 
+from coding_agent.provider import UNCOpenAISettings
+
 
 class CodingAgent(BaseAgent):
     """Run the Python agent locally and execute its tools in Harbor's sandbox."""
@@ -15,6 +17,10 @@ class CodingAgent(BaseAgent):
     def version(self) -> str:
         return "0.1.0"
 
+    def provider_settings(self) -> UNCOpenAISettings:
+        """Prefer Harbor's per-run model; use the environment only as a default."""
+        return UNCOpenAISettings.from_env(model=self.model_name)
+
     async def setup(self, environment: BaseEnvironment) -> None:
         """Task images provide the tools needed by the agent."""
 
@@ -24,9 +30,8 @@ class CodingAgent(BaseAgent):
         environment: BaseEnvironment,
         context: AgentContext,
     ) -> None:
-        # Build the model/tool loop here using UNCOpenAISettings.from_env(
-        #     model=self.model_name
-        # ) and settings.create_async_client() from coding_agent.provider.
+        # Start with settings = self.provider_settings(), then open
+        # settings.create_async_client() and use model=settings.model.
         # Send Responses requests with store=False and background=False.
         # Send shell tool calls to await environment.exec(command=...).
         # Settings maps Harbor's openai/ prefix to the UNC deployment name.

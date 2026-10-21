@@ -59,7 +59,11 @@ class UNCOpenAISettings:
 
     @classmethod
     def from_env(cls, *, model: str | None = None) -> "UNCOpenAISettings":
-        """Read command environment; uv --env-file loads the local .env file."""
+        """Prefer the run's model, then Azure's deployment alias, then OPENAI_MODEL.
+
+        Only None selects the environment default; a blank override is an error.
+        uv --env-file loads local configuration before this method is called.
+        """
         api_key = _env_value("AZURE_OPENAI_API_KEY", "OPENAI_API_KEY")
         if not api_key:
             raise ValueError(
