@@ -3,7 +3,6 @@ from pathlib import Path
 
 import pytest
 
-
 APP = Path("/app")
 ARCHIVE = APP / "archive"
 TARGET = ARCHIVE / "calc_log.txt"
@@ -38,10 +37,7 @@ def test_unrelated_file_content_is_preserved():
 
 
 def test_no_other_paths_under_app_are_created_or_removed():
-    actual_paths = {
-        path.relative_to(APP)
-        for path in APP.rglob("*")
-    }
+    actual_paths = {path.relative_to(APP) for path in APP.rglob("*")}
     assert actual_paths == {
         Path("archive"),
         Path("archive/calc_log_1.txt"),
