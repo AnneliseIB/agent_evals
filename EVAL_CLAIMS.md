@@ -84,3 +84,9 @@
 
 1. Move a file to a new directory
 2. Create and switch to a new branch
+
+
+## Annelise
+
+1. Add an optional parameter with a defualt value
+2. Delete a file
