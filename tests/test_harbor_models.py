@@ -53,7 +53,7 @@ def test_repeatable_cli_models_reach_each_custom_agent(
     monkeypatch.setenv("AZURE_OPENAI_DEPLOYMENT", "environment-default")
     config = _job_from_cli(
         "--path",
-        "tasks/hello-python",
+        "tasks/krisj_fix_add",
         "--agent",
         AGENT_PATH,
         "--model",
@@ -82,7 +82,7 @@ def test_comparison_yaml_reaches_each_custom_agent(tmp_path: Path) -> None:
     assert config.n_attempts == 1
     assert config.n_concurrent_trials == 1
     assert config.retry.max_retries == 0
-    assert [task.path for task in config.tasks] == [Path("tasks/hello-python")]
+    assert [task.path for task in config.tasks] == [Path("tasks/krisj_fix_add")]
     assert [_agent(agent, tmp_path).provider_settings().model for agent in config.agents] == [
         "gpt-5.6-luna",
         "gpt-5.6-terra",
@@ -114,7 +114,7 @@ def test_cli_without_model_uses_environment_default(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     monkeypatch.setenv("OPENAI_MODEL", "default-deployment")
-    config = _job_from_cli("--path", "tasks/hello-python", "--agent", AGENT_PATH)
+    config = _job_from_cli("--path", "tasks/krisj_fix_add", "--agent", AGENT_PATH)
     assert config.agents[0].model_name is None
     assert _agent(config.agents[0], tmp_path).provider_settings().model == "default-deployment"
 

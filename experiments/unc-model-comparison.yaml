@@ -9,7 +9,7 @@ retry:
 environment:
   type: docker
 tasks:
-  - path: tasks/hello-python
+  - path: tasks/krisj_fix_add
 agents:
   - import_path: coding_agent.agent:CodingAgent
     model_name: openai/gpt-5.6-luna

@@ -2,7 +2,7 @@
 
 A Harbor task gives an agent an instruction, a starting environment, and a
 verifier that scores the result. For our coding tasks, start with one small,
-testable change and use [hello-python](../tasks/hello-python/) as a working
+testable change and use [krisj_fix_add](../tasks/krisj_fix_add/) as a working
 example. Run the commands below from `evals/` with Docker running.
 [Harbor task overview](https://docs.harborframework.com/tasks/overview).
 

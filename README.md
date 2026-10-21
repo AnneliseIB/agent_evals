@@ -131,7 +131,7 @@ Preview a comparison now, without credentials, Docker, or model requests:
 
 ```sh
 uv run --locked harbor run \
-  --path tasks/hello-python \
+  --path tasks/krisj_fix_add \
   --agent coding_agent.agent:CodingAgent \
   --model openai/gpt-5.6-luna \
   --model openai/gpt-5.6-terra \
@@ -218,7 +218,7 @@ a separate adapter. No live model qualification was performed here.
 
 ## Tasks and results
 
-`tasks/hello-python/` is a tiny coding task: fix a broken `add()` function. Each
+`tasks/krisj_fix_add/` is a tiny coding task: fix a broken `add()` function. Each
 task has instructions, `task.toml`, an environment image, a reference solution,
 and a verifier that writes `/logs/verifier/reward.txt`. See
 [Harbor's task tutorial](https://docs.harborframework.com/tutorials/create-a-task).
