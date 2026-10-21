@@ -7,7 +7,7 @@
 
 ## Lizzie
 
-1. Find and cover a simple edge case
+1. Add a new dependency
 2. create a new file
 
 ## Lucas
