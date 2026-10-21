@@ -84,3 +84,8 @@
 
 1. Move a file to a new directory
 2. Create and switch to a new branch
+
+## Lucy
+
+1. Add a `.gitignore` rule to ignore `.env` files
+2. Add a default value to a function parameter
