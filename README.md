@@ -218,8 +218,20 @@ a separate adapter. No live model qualification was performed here.
 
 ## Tasks and results
 
-`tasks/krisj_fix_add/` is a tiny coding task: fix a broken `add()` function. Each
-task has instructions, `task.toml`, an environment image, a reference solution,
+`tasks/krisj_fix_add/` is a tiny coding task: fix a broken `add()` function.
+`tasks/leoa_snake-to-camel/` asks the agent to rename variables in a small module
+from snake_case to camelCase without changing its behavior.
+`tasks/leoa_duplicate-file/` asks the agent to copy a file in place, naming the
+copy with the next unused version number (for example, `greet3.py`).
+`make oracle` and `make baseline` discover and run all tasks under `tasks/`.
+To select specific tasks, use Harbor's repeatable task-name filter:
+
+```sh
+uv run --locked harbor run --path tasks --agent oracle --env docker \
+  --include-task-name leoa_snake-to-camel --include-task-name leoa_duplicate-file
+```
+
+Each task has instructions, `task.toml`, an environment image, a reference solution,
 and a verifier that writes `/logs/verifier/reward.txt`. See
 [Harbor's task tutorial](https://docs.harborframework.com/tutorials/create-a-task).
 For a short walkthrough with local examples, read
