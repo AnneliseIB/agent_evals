@@ -11,6 +11,7 @@ class River:
         self.fish -= self.bears
         self.bears += self.bears // 2
 
+
 def main():
     river: River = River(10, 10)
     river.one_day()

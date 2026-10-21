@@ -18,6 +18,7 @@ class River:
         self.fish -= self.bears
         self.bears += self.bears // 2
 
+
 def main():
     """Run the river simulation for one day and print the results."""
     river: River = River(10, 10)

@@ -16,7 +16,7 @@ EXPECTED_DEFINITIONS = (
 
 # The original task source is kept here so the verifier can ensure that adding
 # docstrings is the only change made to river_sim.py.
-ORIGINAL_SOURCE = '''\
+ORIGINAL_SOURCE = """\
 class River:
     fish: int
     bears: int
@@ -30,11 +30,12 @@ class River:
         self.fish -= self.bears
         self.bears += self.bears // 2
 
+        
 def main():
     river: River = River(10, 10)
     river.one_day()
     print(f"Fish: {river.fish}, Bears: {river.bears}")
-'''
+"""
 
 
 @pytest.fixture(scope="module")
@@ -68,11 +69,13 @@ def _without_docstrings(node):
     class DocstringStripper(ast.NodeTransformer):
         def _strip(self, node):
             self.generic_visit(node)
-            if (isinstance(node, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef))
-                    and node.body
-                    and isinstance(node.body[0], ast.Expr)
-                    and isinstance(node.body[0].value, ast.Constant)
-                    and isinstance(node.body[0].value.value, str)):
+            if (
+                isinstance(node, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef))
+                and node.body
+                and isinstance(node.body[0], ast.Expr)
+                and isinstance(node.body[0].value, ast.Constant)
+                and isinstance(node.body[0].value.value, str)
+            ):
                 node.body.pop(0)
             return node
 
@@ -104,6 +107,6 @@ def test_each_expected_definition_has_a_one_sentence_docstring(tree, name):
 
 def test_names_signatures_and_code_are_unchanged(tree):
     original_tree = ast.parse(ORIGINAL_SOURCE)
-    assert ast.dump(_without_docstrings(tree)) == ast.dump(
-        _without_docstrings(original_tree)
-    ), "river_sim.py must only gain docstrings; keep names, signatures, and code unchanged"
+    assert ast.dump(_without_docstrings(tree)) == ast.dump(_without_docstrings(original_tree)), (
+        "river_sim.py must only gain docstrings; keep names, signatures, and code unchanged"
+    )
