@@ -1,8 +1,7 @@
 
 """Pytest checks for removing trailing whitespace."""
-
-from pathlib import Path
 import subprocess
+from pathlib import Path
 
 FILE = Path("/app/whitespace.py")
 
