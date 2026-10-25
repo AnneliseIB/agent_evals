@@ -1,4 +1,3 @@
-
 """Pytest checks for removing trailing whitespace."""
 import subprocess
 from pathlib import Path
@@ -16,11 +15,7 @@ def test_no_trailing_whitespace():
 
 def test_code_preserved():
     """Test that the original code is preserved."""
-    expected = (
-        "def greet(name):\n"
-        '    message = "Hello, " + name + "!"\n'
-        "    return message\n"
-    )
+    expected = 'def greet(name):\n    message = "Hello, " + name + "!"\n    return message\n'
 
     assert FILE.read_text() == expected
 
