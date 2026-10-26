@@ -96,14 +96,14 @@ and a verifier that writes `/logs/verifier/reward.txt`. See
 For a short walkthrough with local examples, read
 [Authoring a Harbor eval task](docs/authoring-tasks.md).
 
-`tasks/add-input-validation/` is Charlotte's input-validation task: add type
+`tasks/yitsui_add-input-validation/` is Charlotte's input-validation task: add type
 checks to `add()` while preserving valid addition. It accepts integers and
 floats, rejects booleans and other types with `TypeError`, and grades behavior
 with pytest. Validate it without model calls:
 
 ```sh
-make oracle TASK=tasks/add-input-validation
-make baseline TASK=tasks/add-input-validation
+make oracle TASK=tasks/yitsui_add-input-validation
+make baseline TASK=tasks/yitsui_add-input-validation
 ```
 
 Expect oracle reward **1** and baseline reward **0**. Without `TASK`, these

@@ -1,4 +1,4 @@
-# local/add-input-validation
+# local/yitsui_add-input-validation
 
 Charlotte's task #1: add input validation to a Python calculator function.
 The starter already adds numbers correctly but accepts invalid types such as
@@ -11,8 +11,8 @@ reference for the Docker environment, oracle script, and pytest verifier.
 From the repository root, with Docker running:
 
 ```sh
-make oracle TASK=tasks/add-input-validation
-make baseline TASK=tasks/add-input-validation
+make oracle TASK=tasks/yitsui_add-input-validation
+make baseline TASK=tasks/yitsui_add-input-validation
 ```
 
 The oracle should score **1**; the unchanged starter should score **0** because
