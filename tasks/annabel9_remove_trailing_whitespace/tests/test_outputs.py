@@ -1,4 +1,5 @@
 """Pytest checks for removing trailing whitespace."""
+
 import subprocess
 from pathlib import Path
 
