@@ -1,19 +1,17 @@
 [project]
-name = "coding-agent-evals"
+name = "comp590-evals"
 version = "0.1.0"
-description = "A small Harbor workspace for developing a Python coding agent with OpenAI."
+description = "Harbor tasks and evaluation adapters for independently developed agents."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "harbor==0.24.0",
-    "openai>=2,<3",
+    "python-dotenv>=1,<2",
 ]
-
-[project.scripts]
-openai-smoke = "coding_agent.smoke:main"
 
 [dependency-groups]
 dev = [
+    "pyright>=1.1,<2",
     "pytest>=8,<10",
     "ruff>=0.14,<1",
 ]
@@ -23,7 +21,7 @@ requires = ["hatchling>=1.27,<2"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/coding_agent"]
+packages = ["src/eval_adapters"]
 
 [tool.ruff]
 target-version = "py312"
@@ -31,6 +29,13 @@ line-length = 100
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
+
+[tool.pyright]
+include = ["src"]
+pythonVersion = "3.12"
+typeCheckingMode = "standard"
+venvPath = "."
+venv = ".venv"
 
 [tool.pytest.ini_options]
 # Task verifiers depend on the sandbox filesystem and run through Harbor.
