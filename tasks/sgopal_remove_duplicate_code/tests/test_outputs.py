@@ -4,6 +4,4 @@ import functions
 
 
 def test_one_duplicate_function_removed():
-    assert not (
-        hasattr(functions, "function_a") and hasattr(functions, "function_b")
-    )
+    assert not (hasattr(functions, "function_a") and hasattr(functions, "function_b"))
