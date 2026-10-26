@@ -2,7 +2,6 @@ import ast
 from pathlib import Path
 
 import pytest
-
 from geometry import calculate_circle_area
 
 
@@ -37,10 +36,8 @@ def test_pi_is_a_module_level_constant_used_by_calculate_circle_area():
     calculate_circle_area = next(
         node
         for node in tree.body
-        if isinstance(node, ast.FunctionDef)
-        and node.name == "calculate_circle_area"
+        if isinstance(node, ast.FunctionDef) and node.name == "calculate_circle_area"
     )
     assert any(
-        isinstance(node, ast.Name) and node.id == "PI"
-        for node in ast.walk(calculate_circle_area)
+        isinstance(node, ast.Name) and node.id == "PI" for node in ast.walk(calculate_circle_area)
     ), "calculate_circle_area() must use PI instead of the literal value"
