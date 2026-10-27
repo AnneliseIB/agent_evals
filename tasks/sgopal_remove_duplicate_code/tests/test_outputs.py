@@ -4,4 +4,10 @@ import functions
 
 
 def test_one_duplicate_function_removed():
-    assert not (hasattr(functions, "function_a") and hasattr(functions, "function_b"))
+    remaining = [
+        getattr(functions, name)
+        for name in ("function_a", "function_b")
+        if hasattr(functions, name)
+    ]
+    assert len(remaining) == 1
+    assert remaining[0]() == "hello"
