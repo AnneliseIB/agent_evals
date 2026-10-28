@@ -7,7 +7,7 @@
 
 ## Lizzie
 
-1. Find and cover a simple edge case
+1. Add a new dependency
 2. create a new file
 
 ## Lucas
@@ -90,3 +90,8 @@
 
 1. Run tests and report results without making changes
 2. Delete a file
+
+## Lucy
+
+1. Add a `.gitignore` rule to ignore `.env` files
+2. Add a default value to a function parameter
