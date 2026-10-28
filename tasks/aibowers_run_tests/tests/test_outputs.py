@@ -1,64 +1,34 @@
+import re
 import subprocess
 from pathlib import Path
 
-import pytest
-
-
 APP = Path("/app")
-
-EXPECTED_FILES = {
-    Path("calculator.py"): (
-        "def add(a, b):\n"
-        "    return a - b\n"
-        "\n"
-        "def divide(a, b):\n"
-        "    if b == 0:\n"
-        "        raise ValueError(\"Cannot divide by zero\")\n"
-        "    return round(a / b)\n"
-    ),
-    Path("tests/test_calculator.py"): (
-        "import pytest\n"
-        "\n"
-        "from calculator import add, divide\n"
-        "\n"
-        "\n"
-        "def test_add_positive_numbers():\n"
-        "    assert add(2, 3) == 5\n"
-        "\n"
-        "\n"
-        "def test_divide_returns_quotient():\n"
-        "    assert divide(10, 2) == 5\n"
-        "\n"
-        "\n"
-        "\n"
-        "def test_divide_with_zero_returns_zero():\n"
-        "    assert divide(5, 0) == 0\n"
-        "\n"
-        "\n"
-        "@pytest.mark.skip(reason=\"demonstrates a skipped test\")\n"
-        "def test_decimal_division():\n"
-        "    assert divide(1, 4) == 0.25\n"
-    ),
+REPORT = APP / "failing_tests.txt"
+EXPECTED_FAILURES = {
+    "tests/test_calculator.py::test_add_positive_numbers",
+    "tests/test_calculator.py::test_divide_with_zero_returns_zero",
 }
 
 
-@pytest.mark.parametrize("relative_path", EXPECTED_FILES)
-def test_project_files_are_unchanged(relative_path):
-    path = APP / relative_path
-    assert path.is_file()
-    assert path.read_text() == EXPECTED_FILES[relative_path]
+def reported_ids():
+    assert REPORT.is_file(), "failing_tests.txt was not created in /app"
+    text = REPORT.read_text(encoding="utf-8")
+    return [line.strip() for line in text.splitlines() if line.strip()]
 
 
-def test_no_unexpected_files_were_created():
-    actual_files = {
-        path.relative_to(APP)
-        for path in APP.rglob("*")
-        if path.is_file() and "__pycache__" not in path.parts
-    }
-    assert actual_files == set(EXPECTED_FILES)
+# --- Reporting checks ---
 
 
-def test_suite_has_expected_results():
+def test_report_contains_expected_failures():
+    reported = reported_ids()
+    reported_set = set(reported)
+    missing = EXPECTED_FAILURES - reported_set
+    extra = reported_set - EXPECTED_FAILURES
+    assert not missing, f"Failing tests not reported: {sorted(missing)}"
+    assert not extra, f"Reported tests that did not fail: {sorted(extra)}"
+
+
+def test_report_matches_independent_test_run():
     result = subprocess.run(
         [
             "python",
@@ -67,6 +37,7 @@ def test_suite_has_expected_results():
             "-q",
             "-p",
             "no:cacheprovider",
+            "--disable-warnings",
             "tests/test_calculator.py",
         ],
         cwd=APP,
@@ -75,7 +46,11 @@ def test_suite_has_expected_results():
         check=False,
     )
     summary = result.stdout + result.stderr
+    actual_failures = {
+        match.group(1) for match in re.finditer(r"^FAILED (.+?)(?: - .*)?$", summary, re.MULTILINE)
+    }
+    assert actual_failures == EXPECTED_FAILURES, summary
+    assert "1 passed" in summary, summary
+    assert "2 failed" in summary, summary
+    assert "1 skipped" in summary, summary
     assert result.returncode != 0
-    assert "1 passed" in summary
-    assert "2 failed" in summary
-    assert "1 skipped" in summary

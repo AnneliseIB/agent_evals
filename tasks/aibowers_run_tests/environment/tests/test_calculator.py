@@ -1,5 +1,4 @@
 import pytest
-
 from calculator import add, divide
 
 
@@ -9,7 +8,6 @@ def test_add_positive_numbers():
 
 def test_divide_returns_quotient():
     assert divide(10, 2) == 5
-
 
 
 def test_divide_with_zero_returns_zero():
